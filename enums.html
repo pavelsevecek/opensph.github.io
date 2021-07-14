@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>OpenSPH</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+            <div id="main" style="margin-left:15%;width:70%;max-width: 154em;">
+				<!-- One -->
+					<section id="one">
+						<header class="major">
+							<h2>Extensible <code>enum class</code></h2>
+						</header>
+						<p>
+                            The following example demonstrates this:
+                            <pre><code>enum class Vehicle {
+    CAR,
+    BUS,
+};
+
+void drive(Vehicle vehicle);
+
+enum class Transport : Vehicle {
+    SHIP,
+    PLANE,
+};
+
+void travel(Transport transport);
+</code></pre>
+                            The enum <code>Transport</code> is then a strict superset.
+                            One can travel using any vehicle, <i>but also</i> by other 
+                            means of transport, such as a ship or an airplane.
+
+                            Of course, this is not a valid C++ code.
+
+                            <pre><code>template &lt;typename TDerived, typename TBase&gt;
+struct IsExtended {
+    static constexpr bool value = false;
+};
+</code></pre>
+                        </p>
+                    </section>
+			</div>
+		
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
