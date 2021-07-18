@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>OpenSPH - First simulation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+            <div id="main" style="margin-left:15%;width:70%;max-width:154em;color:#222222">
+				<!-- One -->
+					<section id="one">
+							<h1>First simulation</h1>
+
+                            <h2>Setup</h2>
+
+                            Simulations in OpenSPH are set up using 
+                            a node-based editor. To get familiar 
+                            with the system, open up the the <b>Presets</b> category on the right-hand side of the editor and select a simulation 
+                            by double-clicking it.
+
+							<p><span class="image right"><img src="images/tutorial/nodes.jpg" alt="" /></span>
+                            Each node requires a set of inputs, it is necessary to connect the inputs 
+                            in order to evalute it. For example, the <b>SPH run</b> node requires the particle 
+                            data as its initial conditions and, if boundary conditions are enabled,
+                            also the shape definiting the computation domain.
+
+                            There are currently four types of nodes:
+                            <ul>
+                                <li><b>Particle nodes</b> create particles.
+                                    They may run a simulation, set up initial conditions,
+                                    load particles from file, etc.  
+                                    These are the most used nodes. </li>
+                                <li><b>Material nodes</b> define a material. They are typically 
+                                    used as an input for initial conditions nodes.</li>
+                                <li><b>Geometry nodes</b> represent some sort of shape. They can 
+                                    be used for define initial or boundary conditions 
+                                    or for other auxiliary operations.</li>
+                                <li><b>Camera nodes</b> define a projection and are currently 
+                                    only used in the <b>Render animation</b> node.</li>
+                            </ul>
+                            </p> 
+                           
+                            <h2>Running the simulation</h2>
+
+                            To start the simulation, you can:
+                            <ul>
+                                <li>Select <b>Simulation &rArr; Start run</b> from the application menu (shortcut Ctrl+R)</li>
+                                <li>Right-click a specific node and select <b>Evaluate</b></li>
+                            </ul>
+                            If the simulation setup is not valid, OpenSPH will show you an error message,
+                            otherwise the nodes will be evaluated, starting from the left-most ones
+                            (nodes with no inputs) and moving right in the node hierarchy.
+                            The currently evaluated node as well as the progress are shown in the 
+                            status bar on the bottom of the simulation page.
+
+		<p><span class="image left"><img src="images/tutorial/particlevis.jpg" alt="" /></span>
+                            For SPH simulations, it is useful to set <b>Particle radius</b> to about 0.3
+                            in the simulation page. This only affect the visualization of particles,
+                            reducing the particle overlap and making the rendering window more responsive.
+                            However, keep the radius at 1 for N-body simulation to correctly show the  
+                            physical radius of particles.
+        </p>
+        <p>
+
+                            It is sometimes useful to set certain <b>Cutoff</b> distance. This will only render 
+                            particles close to the z=0 plane, showing the interiors of the simulated objects.
+        </p>
+
+                            <h2>Time step</h2>
+
+							<p><span class="image right"><img src="images/tutorial/timestep.jpg" alt="" /></span>
+                            The time step in the simulation is determined automatically,
+                            using the user-defined criteria. The current time step 
+                            is displayed in the <b>Run statistics</b> panel, together 
+                            with the criterion that limits the time step.
+                            There are several criteria, all of which are enabled by default.
+                            They can be set in the <b>Time step criteria</b> property 
+                            of the simulation node.
+                            Generally, the <b>Courant</b> and <b>Divergence</b> criterion 
+                            ensure the stability and should therefore always be enabled 
+                            (although feel free to test what happens if you turn them off).
+                            Criteria <b>Derivatives</b> and <b>Acceleration</b> control the 
+                            accuracy of the simulation. It is useful to disable them for quick 
+                            tests, as they may considerably slow down the simulation,
+                            although they should remain enabled for 'serious' work.
+                            The time step is further limited by the <b>Maximal timestep</b> property,
+                            which might need to be increased for simulations of very large objects.
+                             </p>
+                           
+                    </section>
+			</div>
+		
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
