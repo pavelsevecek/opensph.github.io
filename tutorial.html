@@ -45,7 +45,7 @@
                             </p> 
                            
                             <h2>Running the simulation</h2>
-
+                            <p>
                             To start the simulation, you can:
                             <ul>
                                 <li>Select <b>Simulation &rArr; Start run</b> from the application menu (shortcut Ctrl+R)</li>
@@ -56,27 +56,25 @@
                             (nodes with no inputs) and moving right in the node hierarchy.
                             The currently evaluated node as well as the progress are shown in the 
                             status bar on the bottom of the simulation page.
-
-		<p><span class="image left"><img src="images/tutorial/particlevis.jpg" alt="" /></span>
+                            </p>
+                            <p>
                             There are two types of simulation - SPH and N-body. Both
                             can be used for simulations of self-gravitating objects, they differ 
-                            in particle interactions. SPH solves hydrodynamical equations to get 
+                            in particle interactions. <a href="https://en.wikipedia.org/wiki/Smoothed-particle_hydrodynamics">SPH</a> 
+                            solves hydrodynamical equations to get 
                             physically correct behavior of fluids or solid bodies. N-body considers
                             particles to be solid spheres and handles their collisions using either 
                             billiard-ball physics or by merging them into a larger particle.
                             </p>
-                            <p>
+                            <p><span class="image left"><img src="images/tutorial/particlevis.jpg" alt="" /></span>
                             For SPH simulations, it is useful to set <b>Particle radius</b> to about 0.3
                             in the simulation page. This only affects the visualization of particles.
                             It reduces the particle overlap and makes the rendering window more responsive.
                             However, keep the radius at 1 for N-body simulation to correctly show the  
                             physical radius of particles.
-        </p>
-        <p>
-
                             It is sometimes useful to set certain <b>Cutoff</b> distance. This will only render 
                             particles close to the z=0 plane, showing the interiors of the simulated objects.
-        </p>
+                            </p>
 
                             <h2>Time step</h2>
 
