@@ -18,7 +18,51 @@
                             <p>
                             Page under development!
                             </p>
+
+                            To create an animation, you must first  
+                            save the simulation data to files.
+                            There are two file formats suitable for this purpose:<br /><br />
+
+                            <ul>
+                                <li>Data files (*.sdf) - store basic 
+                                information about particles, like particle velocities,
+                                internal energy, etc. </li> 
+                                <li>State files (*.ssf)  - store 
+                                <i>all</i> the simulation information, so
+                                it can be used to save and resume the simulation.
+                                </li>
+                            </ul>
+                            <span class="image right"><img src="images/tutorial/fileoutput.jpg" alt="" /></span>
+                            For rendering, the data files are preferred, as 
+                            the state files can become <i>huge</i> for high-resolution
+                            simulations.
+                            <br />
+                            Output files of a simulation can be set up in the <b>Output</b>
+                            category. You have to specify the following:<br /><br />
+                            <ul>
+                                <li>Directory - path to the directory where the files will be stored</li>
+                                <li>File mask - specifies the generated file names; for simulation_%d.sdf, the simulation will create files simulation_0000.sdf, simulation_0001.sdf, etc.
+                                <li>Output interval - period of output files; do not set too low to avoid saving excessive number of files.</li>
+                            </ul>
+                            <span class="image left"><img src="images/tutorial/render.jpg" alt="" /></span>
+                            Once the files are created, they can be rendered using <b>Render animation</b> node (under <b>Rendering</b> category). The node requires a camera as an input. OpenSPH includes several camera models, <b>Perspective camera</b> being the most common one.
+                            In the render node, set output paths of rendered images,
+                            similarly as in the simulation node.<br />
+
+                            The render node works in two modes:<br /><br />
+                            <ul>
+                                <li>Single frame - reads particle data from the 
+                                connected input and renders a single image. </li>
+                                <li>File sequence - renders an animation, given the first file 
+                                    in the sequence. </li>
+                            </ul>
+                            Once the nodes are set up, right-click the render node,
+                            and choose either <b>Preview</b> to get a quick preview of 
+                            the rendered result, or <b>Render</b> to create and save rendered images.
+
+                            <br />
                         <p>
+                        <h3>Rendering algorithms:</h3>
 						<div class="row">
 							<article class="col-4 col-12-xsmall work-item" style="color:#444444">
 								<a href="images/fulls/particle.jpg" class="image fit thumb"><img src="images/thumbs/particle.jpg" alt="" /></a>
