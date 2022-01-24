@@ -31,11 +31,26 @@
          <tr><td> getParam(name) </td><td>Returns the parameter of given name as double</td></tr>
      </table>
      The script node must return a <i>Particles</i> object.
-    </br>
+    <br />
+    <br />
+    <h4>Example:</h4>
+    <pre><code>// spin particles around z-axis by given factor
+var particles = getInput("particles");
+auto& r = particle.getPositions();
+auto& v = particle.getVelocities();
 
-                            Available functions:<br /><br />
+var factor = getParam("factor");
+var N = particles.getParticleCnt();
+for (var i = 0; i < N; i++) {
+    var perp = Vec3(r[i].y, -r[i].x, 0);
+    var dir = normalized(perp);
+    var dist = length(Vec3(r[i].x, r[i].y, 0));
+    v[i] += dir * dist * f;
+}
+return particles;</code></pre>
 
-                            <h4>Math functions</h4>
+    <h3>Available functions:</h3> 
+    <h4>Math functions</h4>
     <table>
         <tr><td> sqr(x) </td><td>Square of a number</td></tr>
         <tr><td>  sqrt(x)</td><td>Square root</td></tr>
