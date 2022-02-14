@@ -20,7 +20,85 @@
                             </p>
                             OpenSPH allows to create custom nodes 
                             and modify node data using the  <a href="https://chaiscript.com/">Chaiscript</a> language.
-                            
+                            <br /><br />
+
+
+                            <h3>Script node</h3>
+                            Script node can define any number of slots and additional value parameters.
+                            These can then be accessed from the script using
+     <table>
+         <tr><td> getInput(name) </td><td>Returns the input of given name as <i>Particles</i> object</td></tr>
+         <tr><td> getParam(name) </td><td>Returns the parameter of given name as double</td></tr>
+     </table>
+     The script node must return a <i>Particles</i> object.
+    <br />
+    <br />
+    <h4>Example:</h4>
+    <pre><code>// spin particles around z-axis by given factor
+var particles = getInput("particles");
+auto& r = particle.getPositions();
+auto& v = particle.getVelocities();
+
+var factor = getParam("factor");
+var N = particles.getParticleCnt();
+for (var i = 0; i < N; i++) {
+    var perp = Vec3(r[i].y, -r[i].x, 0);
+    var dir = normalized(perp);
+    var dist = length(Vec3(r[i].x, r[i].y, 0));
+    v[i] += dir * dist * f;
+}
+return particles;</code></pre>
+
+    <h3>Available functions:</h3> 
+    <h4>Math functions</h4>
+    <table>
+        <tr><td> sqr(x) </td><td>Square of a number</td></tr>
+        <tr><td>  sqrt(x)</td><td>Square root</td></tr>
+        <tr><td>  cos(x)</td><td>Cosine</td></tr>
+        <tr><td>  sin(x)</td><td>Sine</td></tr>
+        <tr><td>  lerp(a, b, x)</td><td>Linear interpolation between two numbers</td></tr>
+        <tr><td>  abs(x)</td><td>Absolute value</td></tr>
+        <tr><td>  pow(x, y)</td><td>Power</td></tr>
+    </table>
+
+    <h4>Vector algebra</h4>
+    <table>
+        <tr><td>dotProd(u, v)</td><td>Dot product</td></tr>
+        <tr><td>crossProd(u, v)</td><td>Cross product</td></tr>
+        <tr><td>length(u)</td><td>Norm of the vector</td></tr>
+        <tr><td>max(u, v)</td><td>Element-wise maximum of two vectors</td></tr>
+        <tr><td>min(u, v)</td><td>Element-wise minimum of two vectors</td></tr>
+        <tr><td>normalized(u)</td><td>Returns normalized vector</td><tr>
+    </table>
+    
+    <h4>Member functions of the Particles class</h4>
+        <table>
+            <tr><td>getParticleCnt()</td><td>returns the number of particles</td></tr>
+            <tr><td>getBoundingBox()</td><td>returns the bounding box of all particles as <i>Box3</i></td></tr>
+            <tr><td>getMasses()</td><td>returns masses of particles</td></tr>
+            <tr><td>getEnergies()</td><td>returns specific energies of particles</td></tr>
+   <tr><td>getDensities()</td><td>returns densities of particles </td></tr>
+ <tr><td>  getPositions()</td><td>return position vectors of particles </td></tr>
+  <tr><td> getVelocities()</td><td>return velocities of particles </td></tr>
+ <tr><td>  getAccelerations()</td><td>return current accelerations of particles </td></tr>
+ <tr><td>  getRadii()</td><td>return radii of particles </td></tr>
+ <tr><td>  merge(other)</td><td>adds all particles from another variable </td></tr>
+ <tr><td>  getBoundingBox()</td><td>returns the bounding box of particles</td></tr>
+ <tr><td>  getCenterOfMass()</td><td>returns the center of mass of particles </td></tr>
+ <tr><td>  getTotalMass()</td><td>return the total mass of all particles </td></tr>
+ <tr><td>  getTotalMomentum()</td><td>return the total momentum of particles </td></tr>
+ <tr><td>  getTotalAngularMomentum()</td><td>return the total angular momentum w.r.t. origin </td></tr>
+ <tr><td>  getAngularFrequency()</td><td>returns the angular frequence of particles w.r.t. origin </td></tr>
+        </table>
+        <h4>Constants</h4>
+        <table>
+            <tr><td>DEG_TO_RAD</td><td>Conversion factor from degrees to radians
+            <tr><td>RAD_TO_DEG</td><td>Conversion factor from radians to degrees
+            <tr><td>M_earth</td><td>Mass of the Earth (in kg)</td></tr>
+            <tr><td>M_sun</td><td>Mass of the Sun (in kg)</td></tr>
+            <tr><td>G</td><td>Gravitational constant</td></tr>
+        </table>
+
    						</header>
                     </section>
 			</div>
