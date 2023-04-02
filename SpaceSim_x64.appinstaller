@@ -17,8 +17,6 @@
 			Version="14.0.30035.0" />
 	</Dependencies>
 	<UpdateSettings>
-		<OnLaunch HoursBetweenUpdateChecks="0" ShowPrompt="true" UpdateBlocksActivation="true"/>
-        <AutomaticBackgroundTask/>
-        <ForceUpdateFromAnyVersion>true</ForceUpdateFromAnyVersion>
+		 <OnLaunch HoursBetweenUpdateChecks="0" />
 	</UpdateSettings>
 </AppInstaller>
