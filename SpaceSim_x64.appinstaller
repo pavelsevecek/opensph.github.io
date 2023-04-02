@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AppInstaller
 	Uri="https://pavelsevecek.github.io/SpaceSim_x64.appinstaller"
-	Version="0.2.0.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	Version="0.2.0.0"
+	xmlns="https://schemas.microsoft.com/appx/appinstaller/2018">
 	<MainPackage
 		Name="69e5bbfc-761c-47b4-937e-1943a5f82f7b"
 		Version="0.2.0.0"
@@ -17,6 +18,8 @@
 			Version="14.0.30035.0" />
 	</Dependencies>
 	<UpdateSettings>
-		 <OnLaunch HoursBetweenUpdateChecks="0" />
+		<OnLaunch HoursBetweenUpdateChecks="0" ShowPrompt="true" UpdateBlocksActivation="true"/>
+        <AutomaticBackgroundTask/>
+        <ForceUpdateFromAnyVersion>true</ForceUpdateFromAnyVersion>
 	</UpdateSettings>
 </AppInstaller>
