@@ -14,7 +14,28 @@
             <!-- One -->
                     <section id="one">
                         <h1>Changelog</h1>
+			<h2>Update 0.4</h2>
+                            <p><a href="https://www.dropbox.com/scl/fi/to2h8zpbfb8oecb53hjtd/SpaceSim_0.4.2.msi?rlkey=6bf2yukhh4pcrotxc9mjzzl1j&dl=1">Download build</a></p>
+                            <span class="image right"><img src="images/changelog/0.4.jpg" /></span>
 
+			<ul>
+				<li>New physically based bloom effect with much larger radius and overall more realistic look.</li>
+				<li>Improved rendering of black holes when using the raymarcher. Black holes now distort the light emitted by particles and the background, creating gravitational lensing.</li>
+				<li>Added shadows to raymarcher. The renderer now calculates shadows casted by individual particles, occluding the directional light.</li>
+				<li>Video can now be rendered at any resolution and framerate.</li>
+				<li>Cohesion has been added to all shaped objects.</li>
+				<li>Planetary rings and accretion disks can now be elliptical and have customizable particle temperatures.</li>
+				<li>Added material selection for group objects (free group and orbiting group).</li>
+				<li>Added collision prediction to the integrator. When enabled, the time step is automatically adjusted to properly handle collisions of fast-moving objects. </li>
+				<li>Added an alternative periodic gravity solver, based on Fast Fourier Transform (FFT).</li>
+				<li>Particles can now be stabilized when using the SPH solver, similarly as in OpenSPH.</li>
+				<li>Added a visualization of Roche limits to the real-time renderer.</li>
+				<li>Added a handheld camera, new type of camera that allows to record and later replay custom camera path.</li>
+				<li>Cameras can now be easily selected using the next/previous buttons on the camera page.</li>
+				<li>Added a few presets - DART, high speed cratering, igniting stars, Sagittarius A* and spaceship hit by missile.</li>
+				<li>Added asteroid (216) Kleopatra.</li>
+				<li>Objects can now be saved to a custom object library. Objects added to the library appear at the bottom of the object list.</li>
+			</ul>
                             <h2>Update 0.3</h2>
                             <p><a href="https://www.dropbox.com/scl/fi/1cp3mtcjq7n2dot8f6zh2/SpaceSim_0.3.3.msi?rlkey=rtp4lnmcignw0kjrqizr1cjgr&dl=0">Download build</a></p>
                             <span class="image right"><img src="images/changelog/0.3.jpg" /></span>
