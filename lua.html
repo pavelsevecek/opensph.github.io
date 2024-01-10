@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>SpaceSim - Scripting</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <!-- Main -->
+            <div id="main" style="margin-left:15%;width:70%;color:#444444; max-width: 154em;">
+                <!-- One -->
+                    <section id="two">
+                        <header class="major">
+                            <h2>Scripted objects</h2>
+                            
+                            SpaceSim allows you to create custom objects using the <a href="https://lua.org/" >Lua</a> language.
+                            <br /><br />
+<h4>Example:</h4>
+You can try adding a scripted object by copying the script below, or by <a href="example_script.lua" download>downloading it</a>.
+    <pre><code>require("math")
+
+-- Name of this object. This will be the label of the button added to 'Custom objects'.
+objectName = "Color cloud";
+
+-- Table of object parameters that will be shown in the UI.
+parameters = {}
+
+parameters.radius = Constants.R_Earth;
+parameters.density = 10000;
+parameters.spinRate = 0.0004;
+parameters.particleScale = 0.01;
+
+-- Returns the total volume of the object. This function is used to determine 
+-- how many particles are assigned to the object.
+function getVolume()
+    return 0.02 * math.pi * math.pow(parameters.radius, 3);
+end
+
+-- Returns the total mass of the object.
+function getTotalMass()
+    return getVolume() * parameters.density;
+end
+
+math.randomseed(os.time())
+
+-- Main entry point of the script. The function will create a table containing 
+-- all particle data of the object.
+function generate(n)
+    state = {}
+    state.position = {};
+    state.velocity = {};
+    state.mass = {};
+    state.density = {};
+    state.radius = {};
+    state.color = {};
+
+    phi = 2 * math.pi / n;
+    for i=1,n
+    do
+        r = math.pow(math.random(), 0.66) * parameters.radius;
+        v = r * parameters.spinRate;
+        state.position[i] = { r * math.cos(phi * i),
+                              r * math.sin(phi * i),
+                              0.01 * parameters.radius * (math.random(-1, 1)) };
+        state.velocity[i] = { v * math.sin(phi * i),
+                              -v * math.cos(phi * i),
+                              0 };
+        state.radius[i] = parameters.particleScale * Constants.R_Earth;
+        state.density[i] = parameters.density;
+        state.mass[i] = parameters.density * 4.0/3.0 * math.pi * math.pow(state.radius[i], 3);
+        state.color[i] = { state.position[i][1] / r,
+                           0.5,
+                           state.position[i][2] / r };
+    end
+    
+    return state;
+end</code></pre>
+
+	<h3>Script functions</h3>
+    The script must define the following <b>mandatory</b> functions.
+    <table>	
+        <tr><td>generate(N)</td><td>Function creating particles. Takes the number of particles as an input parameter.</td></tr>
+        <tr><td>getTotalMass</td><td>Returns the total mass of the object.</td></tr>
+        <tr><td>getVolume</td><td>Return the total volume of the object.</td></tr> 
+    </table>
+	<h3>Quantities</h3>
+	Script function <i>generate</i> has to return a table containing the particle quantities. All quantities are assumed to be in SI units
+	(meters, kilograms, Joules, etc.). The following quantities are <b>mandatory</b> and have to be returned by the function for the object 
+	to work:
+     <table>
+         <tr><td>position</td><td>Positions of all particles</td></tr>
+         <tr><td>velocity</td><td>Velocities of all particles</td></tr>
+         <tr><td>mass</td><td>Particle masses</td></tr>
+         <tr><td>radius</td><td>Particle radii</td></tr>
+     </table>
+     Optionally, the script can also return additional quantities, namely:
+     <table>
+         <tr><td>density</td><td>Particle densities</td></tr>
+         <tr><td>color</td><td>Diffuse color of particles</td></tr>
+         <tr><td>temperature</td><td>Temperatures, used to calculate the glow color</td></tr>
+         <tr><td>energy</td><td>Initial specific internal energy, used by the SPH solver</td></tr>
+         <tr><td>normal</td><td>Initial surface normal of particles</td></tr>
+    </table>
+    If the density specified, the object enables the hydrodynamic solver and handles particle collisions, otherwise a pure gravity solver solver 
+	is used for the simulation.
+    <br /><br />
+	
+	<h3>Variables</h3>
+	Optionally, the script can define a global table named <i>parameters</i>, containing key-value pairs.
+	If used, the values will appear in the object panel and can be modified along other object properties, such as position or rotation.
+	Currently, only number parameters are supported. Values of different types are ignored.
+	<br />
+	The script can also define the following variables:
+	  <table>
+         <tr><td>objectName</td><td>Name of the object in the "Add object" panel</td></tr>
+    </table>	
+    <h3>Constants</h3>
+    The script can use a few useful constants, defined in the global table <code>Constants</code>.
+    <table>
+        <tr><td>R_Earth</td><td>Earth radius</td></tr>
+        <tr><td>R_Sun</td><td>Solar radius</td></tr>
+        <tr><td>au</td><td>Astronomical unit</td></tr>
+        <tr><td>M_Earth</td><td>Earth mass</td></tr>
+        <tr><td>M_Sun</td><td>Solar mass</td></tr>
+    </table>
+                           </header>
+                    </section>
+            </div>
+        
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.poptrox.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
