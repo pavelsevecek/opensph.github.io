@@ -18,8 +18,8 @@
                             
                             SpaceSim allows you to create custom objects using the <a href="https://lua.org/" >Lua</a> language.
                             <br /><br />
-<h4>Example:</h4>
-You can try adding a scripted object by copying the script below, or by <a href="example_script.lua" download>downloading it</a>.
+<h3>Example:</h3>
+You can try adding a scripted object by copying the script below, or by <a href="example_script.lua">downloading it</a>.
     <pre><code>require("math")
 
 -- Name of this object. This will be the label of the button added to 'Custom objects'.
@@ -103,6 +103,7 @@ end</code></pre>
          <tr><td>temperature</td><td>Temperatures, used to calculate the glow color</td></tr>
          <tr><td>energy</td><td>Initial specific internal energy, used by the SPH solver</td></tr>
          <tr><td>normal</td><td>Initial surface normal of particles</td></tr>
+		 <tr><td>uv</td><td>Texturing coordinates, a table containing two values in the interval [0, 1].</td></tr>
     </table>
     If the density specified, the object enables the hydrodynamic solver and handles particle collisions, otherwise a pure gravity solver solver 
 	is used for the simulation.
